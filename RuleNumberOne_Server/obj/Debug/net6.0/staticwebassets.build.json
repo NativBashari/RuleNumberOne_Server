@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "5XH8qu00N3zo0RTkC5HQeQEU/0WySJGkfqiR3DG02WU=",
+  "Source": "RuleNumberOne_Server",
+  "BasePath": "_content/RuleNumberOne_Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

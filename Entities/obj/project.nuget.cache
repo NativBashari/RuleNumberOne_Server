@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "oAIZQ2XI7ge+oUG92Dmi2YE53lhBu/9T+nQan/9QY/nDlfnyPrn2IhDY9qiqxS7AkwVmQtkQARbxAypkukZzug==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nativ\\Desktop\\RuleNumberOne\\RuleNumberOne_Server\\RuleNumberOne_Server\\Entities\\Entities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nativ\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

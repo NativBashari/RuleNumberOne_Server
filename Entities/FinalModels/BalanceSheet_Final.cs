@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entities.FinalModels
 {
-    public class StockProfit
+    public class BalanceSheet_Final
     {
         public int Year { get; set; }
-        public long Profit { get; set; }
-        public float GrowthRates { get; set; } // stock profit - last year
+        public long Equity { get; set; }
+        public long Debts { get; set; }
+        public float GrowthRates { get; set; } // Equity - last year
     }
 }

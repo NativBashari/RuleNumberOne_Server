@@ -9,5 +9,7 @@ namespace Logic.Repository
 {
     public class FundamentalsLogic : IFundamentalsLogic 
     {
+       
+        
     }
 }

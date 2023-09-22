@@ -8,12 +8,11 @@ namespace RuleNumberOne_Server.Controllers
     [ApiController]
     public class FundamentalsController : ControllerBase
     {
-        
-        public FundamentalsController(IFundamentalsLogic)
+        private readonly IFundamentalsLogic _fundamentalsLogic;
+        public FundamentalsController(IFundamentalsLogic fundamentalsLogic)
         {
-
+            _fundamentalsLogic = fundamentalsLogic;
         }
-
 
         [HttpGet("{id}")]
         public async Task<string> GetFundamentalsAsync(string id)

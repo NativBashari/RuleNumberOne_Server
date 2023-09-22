@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.FinalModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,11 @@ namespace Logic.Contracts
 {
     public interface IFundamentalsLogic
     {
-        Task<IEnumerable<>>
+        Task<IEnumerable<BalanceSheet>> GetBalanceSheetsAsync(string id);
+        Task<IEnumerable<CashFlow>> GetCashFlowsAsync(string id);
+        Task<IEnumerable<ProfitLoss>> GetProfitLossAsync(string id);
+
+
 
     }
 }

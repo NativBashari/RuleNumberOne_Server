@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+5uEBxB5MTGGzr05mX8gOyPvZZVBk9ZCeFGO88TFiYvUxA5KLmFSshcB8ymaCJn6VIFlWHxPfXUE5YBci57pXw==",
+  "dgSpecHash": "zz28mkKu0fZUzPZAiUB4QPxkNswlSNi7p73O5iug5l9FQUdJa2WKPymkO91R5YJFFWMIwamFi/dL+fDne7r5Cg==",
   "success": true,
   "projectFilePath": "C:\\Users\\nativ\\Desktop\\RuleNumberOne\\RuleNumberOne_Server\\RuleNumberOne_Server\\RuleNumberOne_Server\\RuleNumberOne_Server.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\nativ\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

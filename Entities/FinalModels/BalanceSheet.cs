@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entities.FinalModels
 {
-    internal class BalanceSheet
+    public class BalanceSheet
     {
+        public int Year { get; set; }
+        public long Equity { get; set; }
+        public long Debts { get; set; }
+        public float GrowthRates { get; set; } // Equity - last year
     }
 }

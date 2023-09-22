@@ -8,5 +8,7 @@ namespace Logic.Contracts
 {
     public interface IFundamentalsLogic
     {
+        Task<IEnumerable<>>
+
     }
 }

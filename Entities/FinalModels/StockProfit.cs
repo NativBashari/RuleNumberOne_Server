@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entities.FinalModels
 {
-    internal class StockProfit
+    public class StockProfit
     {
+        public int Year { get; set; }
+        public long Profit { get; set; }
+        public float GrowthRates { get; set; } // stock profit - last year
     }
 }

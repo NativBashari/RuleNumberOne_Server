@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entities.FinalModels
 {
-    public class ProfitLoss_Final
+    public class ProfitLoss_Final 
     {
         public int Year { get; set; }
-        public long Income { get; set; }
-        public long Profit { get; set; }
-        public float GrowthRates { get; set; } // From last year
+        public double Income { get; set; }
+        public double Profit { get; set; }
+        public double GrowthRates { get; set; }
 
     }
 }

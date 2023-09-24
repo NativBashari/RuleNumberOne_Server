@@ -9,6 +9,6 @@ namespace Logic.Contracts
 {
     public interface IUnitOfWork
     {
-        public Task<FinancialData_Final> GetFinancialSummury();
+        public Task<FinancialData_Final> GetFinancialSummury(string stockMarkup);
     }
 }

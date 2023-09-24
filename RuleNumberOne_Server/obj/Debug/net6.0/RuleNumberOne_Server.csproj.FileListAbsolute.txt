@@ -19,3 +19,16 @@ C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\R
 C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\obj\Debug\net6.0\RuleNumberOne_Server.pdb
 C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\obj\Debug\net6.0\RuleNumberOne_Server.genruntimeconfig.cache
 C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\obj\Debug\net6.0\ref\RuleNumberOne_Server.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Entities.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\EODHD_Client.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Logic.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Logic.pdb
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Entities.pdb
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\EODHD_Client.pdb
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\obj\Debug\net6.0\RuleNumberOne_Server.csproj.CopyComplete
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\RuleNumberOne_Server\obj\Debug\net6.0\RuleNumberOne_Server.MvcApplicationPartsAssemblyInfo.cs

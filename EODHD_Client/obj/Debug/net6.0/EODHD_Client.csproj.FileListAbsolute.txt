@@ -1,0 +1,15 @@
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\bin\Debug\net6.0\EODHD_Client.deps.json
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\bin\Debug\net6.0\EODHD_Client.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\bin\Debug\net6.0\EODHD_Client.pdb
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\bin\Debug\net6.0\Entities.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\bin\Debug\net6.0\Entities.pdb
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.csproj.AssemblyReference.cache
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.AssemblyInfoInputs.cache
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.AssemblyInfo.cs
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.csproj.CoreCompileInputs.cache
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.csproj.CopyComplete
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\refint\EODHD_Client.dll
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\EODHD_Client.pdb
+C:\Users\nativ\Desktop\RuleNumberOne\RuleNumberOne_Server\RuleNumberOne_Server\EODHD_Client\obj\Debug\net6.0\ref\EODHD_Client.dll

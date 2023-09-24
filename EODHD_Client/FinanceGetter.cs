@@ -1,7 +1,10 @@
 ﻿using Entities.RawModels;
+using Newtonsoft.Json;
+using System.Reflection.Metadata;
+
 namespace EODHD_Client
 {
-    public class FinanceGetter  
+    public class FinanceGetter: IFinanceGetter
     {
         private HttpClient _httpClient;
         private string _dataProviderEP;
@@ -13,9 +16,27 @@ namespace EODHD_Client
             _httpClient = new HttpClient();
         }
 
-        public async Task<List<FinancialData>> GetFinancialDatasAsync(string stockID)
+        public async Task<FinancialData> GetFinancialDataAsync(string stockID)
         {
-             return new List<FinancialData>();
+            try
+            {
+                string request = $"{_dataProviderEP}{stockID}.US?api_token={_APIKey}";
+                var response = await _httpClient.GetAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    var jString = await response.Content.ReadAsStringAsync();
+                    var financeData = JsonConvert.DeserializeObject<FinancialData>(jString);
+                    return financeData!;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+      
+            return new FinancialData();
         }
 
     }

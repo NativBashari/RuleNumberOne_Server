@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 namespace Entities.FinalModels
 {
     public class BalanceSheet_Final
-    {
+    { 
         public int Year { get; set; }
-        public long Equity { get; set; }
-        public long Debts { get; set; }
-        public float GrowthRates { get; set; } // Equity - last year
+        public double Equity { get; set; }
+        public double Debts { get; set; }
+        public double GrowthRates { get; set; }
+        public double Roic { get;set; }
+
     }
 }

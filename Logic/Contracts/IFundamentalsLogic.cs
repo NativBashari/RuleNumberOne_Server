@@ -10,11 +10,10 @@ namespace Logic.Contracts
 {
     public interface IFundamentalsLogic
     {
-        Task<IEnumerable<BalanceSheet_Final>> GetBalanceSheetsAsync(BalanceSheet balanceSheet);
-        Task<IEnumerable<CashFlow_Final>> GetCashFlowsAsync(CashFlow cashFlow);
-        Task<IEnumerable<ProfitLoss_Final>> GetProfitLossAsync(IncomeStatement incomeStatement);
-
-
-
+        Task<IList<BalanceSheet_Final>> GetBalanceSheetsAsync(BalanceSheet balanceSheet);
+        Task<IList<CashFlow_Final>> GetCashFlowsAsync(CashFlow cashFlow);
+        Task<IList<ProfitLoss_Final>> GetProfitLossAsync(IncomeStatement incomeStatement);
+        Task GetRoic(IList<ProfitLoss_Final> profitLoss_Final, IList<BalanceSheet_Final> balanceSheet_Finals);
+        Task<IList<StockProfit_Final>> GetStockProfit(BalanceSheet balanceSheet, IncomeStatement incomeStatement);
     }
 }

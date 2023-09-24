@@ -101,10 +101,10 @@ namespace Entities.RawModels
         public DateTimeOffset Date { get; set; }
 
         [JsonProperty("beforeAfterMarket")]
-        public BeforeAfterMarket? BeforeAfterMarket { get; set; }
+        public string? BeforeAfterMarket { get; set; }
 
         [JsonProperty("currency")]
-        public Currency Currency { get; set; }
+        public string? Currency { get; set; }
 
         [JsonProperty("epsActual")]
         public double? EpsActual { get; set; }
@@ -164,7 +164,7 @@ namespace Entities.RawModels
         public string Activity { get; set; }
 
         [JsonProperty("Involvement")]
-        public Involvement Involvement { get; set; }
+        public string Involvement { get; set; }
     }
 
     public partial class Financials
@@ -182,7 +182,7 @@ namespace Entities.RawModels
     public partial class BalanceSheet
     {
         [JsonProperty("currency_symbol")]
-        public Currency CurrencySymbol { get; set; }
+        public string CurrencySymbol { get; set; }
 
         [JsonProperty("quarterly")]
         public Dictionary<string, Dictionary<string, string>> Quarterly { get; set; }
@@ -194,7 +194,7 @@ namespace Entities.RawModels
     public partial class CashFlow
     {
         [JsonProperty("currency_symbol")]
-        public Currency CurrencySymbol { get; set; }
+        public string CurrencySymbol { get; set; }
 
         [JsonProperty("quarterly")]
         public Dictionary<string, Dictionary<string, string>> Quarterly { get; set; }
@@ -206,7 +206,7 @@ namespace Entities.RawModels
     public partial class IncomeStatement
     {
         [JsonProperty("currency_symbol")]
-        public Currency CurrencySymbol { get; set; }
+        public string CurrencySymbol { get; set; }
 
         [JsonProperty("quarterly")]
         public Dictionary<string, Dictionary<string, string>> Quarterly { get; set; }
@@ -218,19 +218,19 @@ namespace Entities.RawModels
     public partial class General
     {
         [JsonProperty("Code")]
-        public Code Code { get; set; }
+        public string Code { get; set; }
 
         [JsonProperty("Type")]
         public string Type { get; set; }
 
         [JsonProperty("Name")]
-        public Name Name { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("Exchange")]
         public string Exchange { get; set; }
 
         [JsonProperty("CurrencyCode")]
-        public Currency CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         [JsonProperty("CurrencyName")]
         public string CurrencyName { get; set; }
@@ -260,7 +260,6 @@ namespace Entities.RawModels
         public string Cusip { get; set; }
 
         [JsonProperty("CIK")]
-        [JsonConverter(typeof(ParseStringConverter))]
         public long Cik { get; set; }
 
         [JsonProperty("EmployerIdNumber")]
@@ -345,20 +344,19 @@ namespace Entities.RawModels
         public string Country { get; set; }
 
         [JsonProperty("ZIP")]
-        [JsonConverter(typeof(ParseStringConverter))]
         public long Zip { get; set; }
     }
 
     public partial class Listing
     {
         [JsonProperty("Code")]
-        public Code Code { get; set; }
+        public string Code { get; set; }
 
         [JsonProperty("Exchange")]
         public string Exchange { get; set; }
 
         [JsonProperty("Name")]
-        public Name Name { get; set; }
+        public string Name { get; set; }
     }
 
     public partial class Officer
@@ -499,7 +497,7 @@ namespace Entities.RawModels
         public DateTimeOffset TransactionDate { get; set; }
 
         [JsonProperty("transactionCode")]
-        public TransactionCode TransactionCode { get; set; }
+        public string TransactionCode { get; set; }
 
         [JsonProperty("transactionAmount")]
         public long TransactionAmount { get; set; }
@@ -508,7 +506,7 @@ namespace Entities.RawModels
         public double TransactionPrice { get; set; }
 
         [JsonProperty("transactionAcquiredDisposed")]
-        public TransactionAcquiredDisposed TransactionAcquiredDisposed { get; set; }
+        public string TransactionAcquiredDisposed { get; set; }
 
         [JsonProperty("postTransactionAmount")]
         public long PostTransactionAmount { get; set; }
@@ -631,347 +629,4 @@ namespace Entities.RawModels
         public double EnterpriseValueEbitda { get; set; }
     }
 
-    public enum BeforeAfterMarket { AfterMarket, BeforeMarket };
-
-    public enum Currency { Usd };
-
-    public enum Involvement { No };
-
-    public enum Code { Aapl, Aapl34, Apc, The0R2V };
-
-    public enum Name { AppleInc, AppleIncCdr, AppleIncDrc, NameAppleInc };
-
-    public enum TransactionAcquiredDisposed { D };
-
-    public enum TransactionCode { S };
-
-    internal static class Converter
-    {
-        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
-        {
-            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
-            DateParseHandling = DateParseHandling.None,
-            Converters =
-            {
-                InvolvementConverter.Singleton,
-                BeforeAfterMarketConverter.Singleton,
-                CurrencyConverter.Singleton,
-                CodeConverter.Singleton,
-                NameConverter.Singleton,
-                TransactionAcquiredDisposedConverter.Singleton,
-                TransactionCodeConverter.Singleton,
-                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
-            },
-        };
-    }
-
-    internal class InvolvementConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Involvement) || t == typeof(Involvement?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "No")
-            {
-                return Involvement.No;
-            }
-            throw new Exception("Cannot unmarshal type Involvement");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Involvement)untypedValue;
-            if (value == Involvement.No)
-            {
-                serializer.Serialize(writer, "No");
-                return;
-            }
-            throw new Exception("Cannot marshal type Involvement");
-        }
-
-        public static readonly InvolvementConverter Singleton = new InvolvementConverter();
-    }
-
-    internal class BeforeAfterMarketConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(BeforeAfterMarket) || t == typeof(BeforeAfterMarket?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "AfterMarket":
-                    return BeforeAfterMarket.AfterMarket;
-                case "BeforeMarket":
-                    return BeforeAfterMarket.BeforeMarket;
-            }
-            throw new Exception("Cannot unmarshal type BeforeAfterMarket");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (BeforeAfterMarket)untypedValue;
-            switch (value)
-            {
-                case BeforeAfterMarket.AfterMarket:
-                    serializer.Serialize(writer, "AfterMarket");
-                    return;
-                case BeforeAfterMarket.BeforeMarket:
-                    serializer.Serialize(writer, "BeforeMarket");
-                    return;
-            }
-            throw new Exception("Cannot marshal type BeforeAfterMarket");
-        }
-
-        public static readonly BeforeAfterMarketConverter Singleton = new BeforeAfterMarketConverter();
-    }
-
-    internal class CurrencyConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Currency) || t == typeof(Currency?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "USD")
-            {
-                return Currency.Usd;
-            }
-            throw new Exception("Cannot unmarshal type Currency");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Currency)untypedValue;
-            if (value == Currency.Usd)
-            {
-                serializer.Serialize(writer, "USD");
-                return;
-            }
-            throw new Exception("Cannot marshal type Currency");
-        }
-
-        public static readonly CurrencyConverter Singleton = new CurrencyConverter();
-    }
-
-    internal class ParseStringConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            long l;
-            if (Int64.TryParse(value, out l))
-            {
-                return l;
-            }
-            throw new Exception("Cannot unmarshal type long");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (long)untypedValue;
-            serializer.Serialize(writer, value.ToString());
-            return;
-        }
-
-        public static readonly ParseStringConverter Singleton = new ParseStringConverter();
-    }
-
-    internal class CodeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Code) || t == typeof(Code?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "0R2V":
-                    return Code.The0R2V;
-                case "AAPL":
-                    return Code.Aapl;
-                case "AAPL34":
-                    return Code.Aapl34;
-                case "APC":
-                    return Code.Apc;
-            }
-            throw new Exception("Cannot unmarshal type Code");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Code)untypedValue;
-            switch (value)
-            {
-                case Code.The0R2V:
-                    serializer.Serialize(writer, "0R2V");
-                    return;
-                case Code.Aapl:
-                    serializer.Serialize(writer, "AAPL");
-                    return;
-                case Code.Aapl34:
-                    serializer.Serialize(writer, "AAPL34");
-                    return;
-                case Code.Apc:
-                    serializer.Serialize(writer, "APC");
-                    return;
-            }
-            throw new Exception("Cannot marshal type Code");
-        }
-
-        public static readonly CodeConverter Singleton = new CodeConverter();
-    }
-
-    internal class NameConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Name) || t == typeof(Name?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "Apple Inc":
-                    return Name.NameAppleInc;
-                case "Apple Inc CDR":
-                    return Name.AppleIncCdr;
-                case "Apple Inc DRC":
-                    return Name.AppleIncDrc;
-                case "Apple Inc.":
-                    return Name.AppleInc;
-            }
-            throw new Exception("Cannot unmarshal type Name");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Name)untypedValue;
-            switch (value)
-            {
-                case Name.NameAppleInc:
-                    serializer.Serialize(writer, "Apple Inc");
-                    return;
-                case Name.AppleIncCdr:
-                    serializer.Serialize(writer, "Apple Inc CDR");
-                    return;
-                case Name.AppleIncDrc:
-                    serializer.Serialize(writer, "Apple Inc DRC");
-                    return;
-                case Name.AppleInc:
-                    serializer.Serialize(writer, "Apple Inc.");
-                    return;
-            }
-            throw new Exception("Cannot marshal type Name");
-        }
-
-        public static readonly NameConverter Singleton = new NameConverter();
-    }
-
-    internal class TransactionAcquiredDisposedConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(TransactionAcquiredDisposed) || t == typeof(TransactionAcquiredDisposed?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "D")
-            {
-                return TransactionAcquiredDisposed.D;
-            }
-            throw new Exception("Cannot unmarshal type TransactionAcquiredDisposed");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (TransactionAcquiredDisposed)untypedValue;
-            if (value == TransactionAcquiredDisposed.D)
-            {
-                serializer.Serialize(writer, "D");
-                return;
-            }
-            throw new Exception("Cannot marshal type TransactionAcquiredDisposed");
-        }
-
-        public static readonly TransactionAcquiredDisposedConverter Singleton = new TransactionAcquiredDisposedConverter();
-    }
-
-    internal class TransactionCodeConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(TransactionCode) || t == typeof(TransactionCode?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "S")
-            {
-                return TransactionCode.S;
-            }
-            throw new Exception("Cannot unmarshal type TransactionCode");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (TransactionCode)untypedValue;
-            if (value == TransactionCode.S)
-            {
-                serializer.Serialize(writer, "S");
-                return;
-            }
-            throw new Exception("Cannot marshal type TransactionCode");
-        }
-
-        public static readonly TransactionCodeConverter Singleton = new TransactionCodeConverter();
-    }
 }

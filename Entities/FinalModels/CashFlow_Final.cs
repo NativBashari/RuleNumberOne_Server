@@ -9,7 +9,8 @@ namespace Entities.FinalModels
     public class CashFlow_Final
     {
         public int Year { get; set; }
-        public long Cash { get; set; }
-        public float GrowthRates { get; set; }
+        public double Cash { get; set; }
+        public double GrowthRates { get; set; }
+
     }
 }

@@ -32,7 +32,7 @@ namespace Logic.Repository
                 {
                     Year = DateTime.Parse(fillingDate).Year,
                     Debts = double.Parse(totalLiab),
-                    Equity = double.Parse(totalAssets)
+                    Assets = double.Parse(totalAssets)
                 };
                 balanceSheet_Finals.Add(balanceSheet_final);
                 i++;
@@ -42,17 +42,17 @@ namespace Logic.Repository
 
         }
 
-      
+
 
         async Task<IList<CashFlow_Final>> IFundamentalsLogic.GetCashFlowsAsync(CashFlow cashFlow)
         {
-           List<CashFlow_Final> cashFlow_Finals = new List<CashFlow_Final>();
-            int i = 0;  
+            List<CashFlow_Final> cashFlow_Finals = new List<CashFlow_Final>();
+            int i = 0;
             foreach (var entry in cashFlow.Yearly)
             {
                 CashFlow_Final cashFlow_Final;
                 string fillingDate = string.Empty;
-                string totalCashFromOperatingActivities= string.Empty;
+                string totalCashFromOperatingActivities = string.Empty;
                 if (!entry.Value.TryGetValue("filing_date", out fillingDate!)) fillingDate = "0";
                 if (!entry.Value.TryGetValue("totalCashFromOperatingActivities", out totalCashFromOperatingActivities!)) totalCashFromOperatingActivities = "0";
                 cashFlow_Final = new CashFlow_Final()
@@ -69,7 +69,7 @@ namespace Logic.Repository
 
         }
 
-   
+
 
         async Task<IList<ProfitLoss_Final>> IFundamentalsLogic.GetProfitLossAsync(IncomeStatement incomeStatement)
         {
@@ -84,7 +84,7 @@ namespace Logic.Repository
                 string netIncome = string.Empty;
                 string totalRevenue = string.Empty;
                 if (!entry.Value.TryGetValue("filing_date", out fillingDate!)) fillingDate = "0";
-                if(!entry.Value.TryGetValue("netIncome", out netIncome!)) netIncome = "0";
+                if (!entry.Value.TryGetValue("netIncome", out netIncome!)) netIncome = "0";
                 if (!entry.Value.TryGetValue("totalRevenue", out totalRevenue!)) totalRevenue = "0";
 
                 profitLoss = new ProfitLoss_Final()
@@ -103,9 +103,12 @@ namespace Logic.Repository
         public async Task<IList<StockProfit_Final>> GetStockProfit(BalanceSheet balanceSheet, IncomeStatement incomeStatement)
         {
             List<StockProfit_Final> stockProfit_Finals = new List<StockProfit_Final>();
-            for (int i = 0; i < balanceSheet.Yearly.Count || i < incomeStatement.Yearly.Count || i == 9; i++)
+            for (int i = 0; i < balanceSheet.Yearly.Count || i < incomeStatement.Yearly.Count; i++)
             {
-                StockProfit_Final stockProfit_Final;
+                if (i == 10) {
+                    break;
+                }
+                    StockProfit_Final stockProfit_Final;
                 string commonStockSharesOutstandingS = string.Empty;
                 string netIncomeS = string.Empty;
                 string fillingDate = string.Empty;
@@ -137,7 +140,7 @@ namespace Logic.Repository
                     profitLoss_Finals[i].GrowthRates = GrowthRatesPrecentage(lastIncome, profitLoss_Finals[i].Income);
                 }
                 lastIncome = profitLoss_Finals[i].Income;
-                
+
             }
         }
         private void GetAssetsGrowthRates(List<BalanceSheet_Final> balanceSheet_Finals)
@@ -148,9 +151,9 @@ namespace Logic.Repository
             {
                 if (lastAssets != 0)
                 {
-                    balanceSheet_Finals[i].GrowthRates = GrowthRatesPrecentage(lastAssets, balanceSheet_Finals[i].Equity);
+                    balanceSheet_Finals[i].GrowthRates = GrowthRatesPrecentage(lastAssets, balanceSheet_Finals[i].Assets);
                 }
-                lastAssets = balanceSheet_Finals[i].Equity;
+                lastAssets = balanceSheet_Finals[i].Assets;
             }
         }
         private void GetCashFlowGrowthRates(List<CashFlow_Final> cashFlow_Finals)
@@ -159,7 +162,7 @@ namespace Logic.Repository
             cashFlow_Finals.Reverse();
             for (int i = 0; i < cashFlow_Finals.Count; i++)
             {
-                if(lastCash != 0)
+                if (lastCash != 0)
                 {
                     cashFlow_Finals[i].GrowthRates = GrowthRatesPrecentage(lastCash, cashFlow_Finals[i].Cash);
                 }
@@ -181,18 +184,18 @@ namespace Logic.Repository
 
         }
 
-        private double GrowthRatesPrecentage(double lastYear, double currentYear) => Math.Round(((currentYear - lastYear) * 100) / lastYear , 2);
+        private double GrowthRatesPrecentage(double lastYear, double currentYear) => Math.Round(((currentYear - lastYear) * 100) / lastYear, 2);
 
         public Task GetRoic(IList<ProfitLoss_Final> profitLoss_Final, IList<BalanceSheet_Final> balanceSheet_Finals)
         {
             for (int i = 0; i < profitLoss_Final.Count || i < balanceSheet_Finals.Count; i++)
             {
                 double netIncome = profitLoss_Final[i].Income;
-                double equity = balanceSheet_Finals[i].Equity;
+                double equity = balanceSheet_Finals[i].Assets;
                 double debts = balanceSheet_Finals[i].Debts;
 
                 double roic = netIncome / (equity + debts);
-                balanceSheet_Finals[i].Roic = Math.Round(roic,2);
+                balanceSheet_Finals[i].Roic = Math.Round(roic, 2);
             }
             return Task.CompletedTask;
         }

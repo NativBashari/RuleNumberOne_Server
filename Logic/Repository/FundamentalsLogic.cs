@@ -1,4 +1,4 @@
-﻿using Entities.FinalModels;
+﻿using Entities.FinalModels.Fundamentals;
 using Entities.RawModels;
 using Logic.Contracts;
 using System;

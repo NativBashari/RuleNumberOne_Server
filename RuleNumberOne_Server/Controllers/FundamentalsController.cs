@@ -1,4 +1,4 @@
-﻿using Entities.FinalModels;
+﻿using Entities.FinalModels.Fundamentals;
 using Logic.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +17,11 @@ namespace RuleNumberOne_Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<FinancialData_Final> GetFundamentalsAsync(string id)
+        public async Task<ActionResult<FinancialData_Final>> GetFundamentalsAsync(string id)
         {
             FinancialData_Final financialData_Final =  await _unitOfWork.GetFinancialSummury(id);
-            return financialData_Final;
+            if (financialData_Final == null) return NotFound();
+            return Ok(financialData_Final);
         }
 
     }

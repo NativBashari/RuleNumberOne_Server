@@ -1,4 +1,4 @@
-﻿using Entities.FinalModels;
+﻿using Entities.FinalModels.Fundamentals;
 using EODHD_Client;
 using Logic.Contracts;
 

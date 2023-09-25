@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.FinalModels
+namespace Entities.FinalModels.Fundamentals
 {
-    public class ProfitLoss_Final 
+    public class ProfitLoss_Final
     {
         public int Year { get; set; }
         public double Income { get; set; }

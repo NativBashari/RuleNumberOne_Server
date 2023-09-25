@@ -1,4 +1,4 @@
-﻿using Entities.FinalModels;
+﻿using Entities.FinalModels.Fundamentals;
 using Entities.RawModels;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,6 @@ namespace Logic.Contracts
         Task<IList<CashFlow_Final>> GetCashFlowsAsync(CashFlow cashFlow);
         Task<IList<ProfitLoss_Final>> GetProfitLossAsync(IncomeStatement incomeStatement);
         Task GetRoic(IList<ProfitLoss_Final> profitLoss_Final, IList<BalanceSheet_Final> balanceSheet_Finals);
-        Task<IList<StockProfit_Final>> GetStockProfit(BalanceSheet balanceSheet, IncomeStatement incomeStatement);
+        Task<IList<StockProfit_Final>> GetStockProfit(BalanceSheet balanceSheet,IncomeStatement incomeStatement);
     }
 }

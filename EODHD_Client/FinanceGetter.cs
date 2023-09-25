@@ -1,6 +1,5 @@
 ﻿using Entities.RawModels;
 using Newtonsoft.Json;
-using System.Reflection.Metadata;
 
 namespace EODHD_Client
 {
@@ -25,8 +24,26 @@ namespace EODHD_Client
                 if (response.IsSuccessStatusCode)
                 {
                     var jString = await response.Content.ReadAsStringAsync();
-                    var financeData = JsonConvert.DeserializeObject<FinancialData>(jString);
-                    return financeData!;
+                    var financeDataYearly = JsonConvert.DeserializeObject<FinancialsYearly>(jString);
+                    FinancialData financialData = new FinancialData()
+                    {
+                        Financials = new Financials()
+                        {
+                            BalanceSheet = new BalanceSheet()
+                            {
+                                Yearly = financeDataYearly.BalanceSheetYearly
+                            },
+                            IncomeStatement = new IncomeStatement()
+                            {
+                                Yearly = financeDataYearly.IncomeStatementYearly
+                            },
+                            CashFlow = new CashFlow()
+                            {
+                                Yearly = financeDataYearly.CashFlowYearly
+                            }
+                        }
+                    };
+                    return financialData!;
                 }
 
             }
@@ -38,6 +55,5 @@ namespace EODHD_Client
       
             return new FinancialData();
         }
-
     }
 }

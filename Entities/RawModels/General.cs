@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Entities.RawModels.FinancialData;
 
 namespace Entities.RawModels
@@ -102,10 +103,10 @@ namespace Entities.RawModels
         public AddressData AddressData { get; set; }
 
         [JsonProperty("Listings")]
-        public Dictionary<string, Listing> Listings { get; set; }
+        public System.Collections.Generic.Dictionary<string, Listing> Listings { get; set; }
 
         [JsonProperty("Officers")]
-        public Dictionary<string, Officer> Officers { get; set; }
+        public System.Collections.Generic.Dictionary<string, Officer> Officers { get; set; }
 
         [JsonProperty("Phone")]
         public string Phone { get; set; }
@@ -165,3 +166,4 @@ namespace Entities.RawModels
         public string YearBorn { get; set; }
     }
 }
+

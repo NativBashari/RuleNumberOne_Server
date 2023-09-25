@@ -20,7 +20,7 @@ namespace EODHD_Client.Fundamentals_Client
         {
             try
             {
-                string request = $"{_dataProviderEP}{stockID}.US?api_token={_APIKey}&filter=Financials::Balance_Sheet::yearly,Financials::Cash_Flow::yearly,Financials::Income_Statement::yearly";
+                string request = $"{_dataProviderEP}/fundamentals/{stockID}.US?api_token={_APIKey}&filter=Financials::Balance_Sheet::yearly,Financials::Cash_Flow::yearly,Financials::Income_Statement::yearly";
                 var response = await _httpClient.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {

@@ -24,7 +24,7 @@ namespace EODHD_Client.Profile_Client
         {
             try
             {
-                string request = $"{dataProviderEP}{stockID}.US?api_token={apiKey}&filter=General";
+                string request = $"{dataProviderEP}/fundamentals/{stockID}.US?api_token={apiKey}&filter=General";
                 var response = await _client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {

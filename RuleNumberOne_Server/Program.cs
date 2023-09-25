@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen(c => {
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IFundamentalsLogic, FundamentalsLogic>();
+builder.Services.AddScoped<IProfileLogic, ProfileLogic>();
 builder.Services.AddScoped<IUnitOfWork>(x =>
     ActivatorUtilities.CreateInstance<UnitOfWork>(x, builder.Configuration.GetSection("AppSettings:api_key").Value, builder.Configuration.GetSection("AppSettings:apiEP").Value)
 );

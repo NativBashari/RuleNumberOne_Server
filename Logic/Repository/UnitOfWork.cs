@@ -1,7 +1,9 @@
 ﻿using Entities.FinalModels.Fundamentals;
-using EODHD_Client;
+using Entities.FinalModels.Profile;
+using EODHD_Client.Fundamentals_Client;
+using EODHD_Client.Profile_Client;
 using Logic.Contracts;
-
+using System.Linq.Expressions;
 
 namespace Logic.Repository
 {
@@ -9,10 +11,14 @@ namespace Logic.Repository
     {
         private readonly IFundamentalsLogic _fundamentalsLogic;
         private IFinanceGetter _financeGetter;
-        public UnitOfWork(IFundamentalsLogic fundamentalsLogic, string apiKey, string dataProviderEP)
+        private readonly IProfileGetter _profileGetter;
+        private readonly IProfileLogic _profileLogic;
+        public UnitOfWork(IFundamentalsLogic fundamentalsLogic, IProfileLogic profileLogic,string apiKey, string dataProviderEP)
         {
             _fundamentalsLogic = fundamentalsLogic;
             _financeGetter = new FinanceGetter(dataProviderEP, apiKey);
+            _profileGetter = new ProfileGetter(dataProviderEP, apiKey);
+            _profileLogic = profileLogic;
         }
 
         public async Task<FinancialData_Final> GetFinancialSummury(string stockMarkUp)
@@ -34,6 +40,22 @@ namespace Logic.Repository
             }
             return financialData_Final;
         }
+
+        public async Task<Profile_Final> GetProfileData(string id)
+        {
+            try
+            {
+                var rawProfileData = await _profileGetter.GetProfileDataAsync(id);
+                Profile_Final profileData = await _profileLogic.GetFinalProfile(rawProfileData);
+                return profileData;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         private FinancialData_Final FinancialDataObjBuilder(IList<ProfitLoss_Final> profitLoss_Final, IList<BalanceSheet_Final> balanceSheet_Finals, IList<CashFlow_Final> cashFlow_Finals, IList<StockProfit_Final> stockProfit_Finals)
         {
             return new FinancialData_Final()

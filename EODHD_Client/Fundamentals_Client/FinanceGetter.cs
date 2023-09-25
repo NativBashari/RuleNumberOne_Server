@@ -1,13 +1,14 @@
 ﻿using Entities.RawModels;
 using Newtonsoft.Json;
+using System.Security.AccessControl;
 
-namespace EODHD_Client
+namespace EODHD_Client.Fundamentals_Client
 {
-    public class FinanceGetter: IFinanceGetter
+    public class FinanceGetter : IFinanceGetter
     {
         private HttpClient _httpClient;
-        private string _dataProviderEP;
-        private string _APIKey;
+        private readonly string _dataProviderEP;
+        private readonly string _APIKey;
         public FinanceGetter(string dataProviderEP, string apiKey)
         {
             _dataProviderEP = dataProviderEP;
@@ -52,7 +53,7 @@ namespace EODHD_Client
 
                 throw;
             }
-      
+
             return new FinancialData();
         }
     }

@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EODHD_Client
+namespace EODHD_Client.Profile_Client
 {
-    public interface IFinanceGetter
+    public interface IProfileGetter
     {
-        Task<FinancialData> GetFinancialDataAsync(string stockID);
+         public Task<General> GetProfileDataAsync(string stockID);
+
     }
 }

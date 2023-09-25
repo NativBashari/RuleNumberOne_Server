@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.FinalModels.Profile
 {
-    public class Profile
+    public class Profile_Final
     {
         public string Code { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;

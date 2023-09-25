@@ -17,8 +17,12 @@ namespace RuleNumberOne_Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<ActionResult<Profile_Final>> GetProfile(string id)
+        public async Task<ActionResult<Profile_Final>>GetProfile(string id)
         {
+            Profile_Final profile = await _unitOfWork.GetProfileData(id);
+            if(profile == null) return NotFound();
+
+            return Ok(profile); 
 
         }
 

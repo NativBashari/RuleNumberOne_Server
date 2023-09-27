@@ -1,5 +1,7 @@
-﻿using Entities.FinalModels.Fundamentals;
+﻿using Entities.EOM;
+using Entities.FinalModels.Fundamentals;
 using Entities.FinalModels.Profile;
+using EODHD_Client.EOM_Client;
 using EODHD_Client.Fundamentals_Client;
 using EODHD_Client.Profile_Client;
 using Logic.Contracts;
@@ -13,12 +15,14 @@ namespace Logic.Repository
         private IFinanceGetter _financeGetter;
         private readonly IProfileGetter _profileGetter;
         private readonly IProfileLogic _profileLogic;
+        private readonly IEOMGetter _eomGetter;
         public UnitOfWork(IFundamentalsLogic fundamentalsLogic, IProfileLogic profileLogic,string apiKey, string dataProviderEP)
         {
             _fundamentalsLogic = fundamentalsLogic;
             _financeGetter = new FinanceGetter(dataProviderEP, apiKey);
             _profileGetter = new ProfileGetter(dataProviderEP, apiKey);
             _profileLogic = profileLogic;
+            _eomGetter = new EOMGetter(dataProviderEP, apiKey);
         }
 
         public async Task<FinancialData_Final> GetFinancialSummury(string stockMarkUp)
@@ -66,5 +70,7 @@ namespace Logic.Repository
                 stockProfit = stockProfit_Finals
             };
         }
+
+        public async Task<List<EOM>> GetEOM(string id) => await _eomGetter.GetEOMAsync(id);
     }
 }

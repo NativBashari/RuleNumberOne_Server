@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleNumberOne_Server", "RuleNumberOne_Server\RuleNumberOne_Server.csproj", "{8FCC84D5-0F04-445C-85F5-50DCA02D535D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RuleNumberOne_Server", "RuleNumberOne_Server\RuleNumberOne_Server.csproj", "{8FCC84D5-0F04-445C-85F5-50DCA02D535D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EODHD_Client", "EODHD_Client\EODHD_Client.csproj", "{B56A5A03-4F09-418A-B467-6C50A5441CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EODHD_Client", "EODHD_Client\EODHD_Client.csproj", "{B56A5A03-4F09-418A-B467-6C50A5441CFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{2B04C8CA-5DA3-4C66-9DFD-7C0DE811BE0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{2B04C8CA-5DA3-4C66-9DFD-7C0DE811BE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{C2F727E9-8924-4967-86BA-94DFD7D27467}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2B04C8CA-5DA3-4C66-9DFD-7C0DE811BE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B04C8CA-5DA3-4C66-9DFD-7C0DE811BE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B04C8CA-5DA3-4C66-9DFD-7C0DE811BE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F727E9-8924-4967-86BA-94DFD7D27467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F727E9-8924-4967-86BA-94DFD7D27467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F727E9-8924-4967-86BA-94DFD7D27467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F727E9-8924-4967-86BA-94DFD7D27467}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

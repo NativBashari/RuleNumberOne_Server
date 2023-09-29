@@ -115,6 +115,7 @@ namespace Entities.RawModels
 
         [JsonProperty("UpdatedAt")]
         public DateTimeOffset UpdatedAt { get; set; }
+        public Highlights Highlights { get; set; }
     }
 
     public partial class AddressData
@@ -158,5 +159,7 @@ namespace Entities.RawModels
         [JsonProperty("YearBorn")]
         public string YearBorn { get; set; }
     }
+
+
 }
 

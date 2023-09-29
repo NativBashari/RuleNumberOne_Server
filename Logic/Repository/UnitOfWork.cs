@@ -35,6 +35,7 @@ namespace Logic.Repository
                 IList<ProfitLoss_Final> profitLoss_Final = await _fundamentalsLogic.GetProfitLossAsync(rawFinancialData.Financials.IncomeStatement);
                 IList<BalanceSheet_Final> balanceSheet_Finals = await _fundamentalsLogic.GetBalanceSheetsAsync(rawFinancialData.Financials.BalanceSheet);
                 await _fundamentalsLogic.GetRoic(profitLoss_Final, balanceSheet_Finals);
+                // Find Tareget Price To Buy!! 
                 IList<CashFlow_Final> cashFlow_Finals = await _fundamentalsLogic.GetCashFlowsAsync(rawFinancialData.Financials.CashFlow);
                 IList<StockProfit_Final> stockProfit_Finals = await _fundamentalsLogic.GetStockProfit(rawFinancialData.Financials.BalanceSheet, rawFinancialData.Financials.IncomeStatement);
                 financialData_Final = FinancialDataObjBuilder(profitLoss_Final, balanceSheet_Finals, cashFlow_Finals, stockProfit_Finals);

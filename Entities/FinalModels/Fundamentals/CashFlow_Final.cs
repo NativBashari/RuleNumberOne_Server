@@ -12,5 +12,6 @@ namespace Entities.FinalModels.Fundamentals
         public double Cash { get; set; }
         public double GrowthRates { get; set; }
 
+
     }
 }

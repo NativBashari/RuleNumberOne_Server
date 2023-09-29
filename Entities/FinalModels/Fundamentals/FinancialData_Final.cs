@@ -13,5 +13,8 @@
         public IList<CashFlow_Final> CashFlow { get; set; }
         public IList<ProfitLoss_Final> ProfitLoss { get; set; }
         public IList<StockProfit_Final> stockProfit { get; set; }
+        
+
+
     }
 }

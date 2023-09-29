@@ -15,6 +15,6 @@ namespace Logic.Contracts
         Task<IList<ProfitLoss_Final>> GetProfitLossAsync(IncomeStatement incomeStatement);
         Task GetRoic(IList<ProfitLoss_Final> profitLoss_Final, IList<BalanceSheet_Final> balanceSheet_Finals);
         Task<IList<StockProfit_Final>> GetStockProfit(BalanceSheet balanceSheet,IncomeStatement incomeStatement);
-       // Task<RuleNumberOneNumbers> GetRuleNumberOneNumbers(BalanceSheet balanceSheet);
+        Task<RuleNumberOneNumbers> GetRuleNumberOneNumbers(IList<BalanceSheet_Final> balanceSheet , Highlights highlights, StockProfit_Final lastStockProfit_Final);
     }
 }

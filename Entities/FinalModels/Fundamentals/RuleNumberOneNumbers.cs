@@ -13,6 +13,7 @@ namespace Entities.FinalModels.Fundamentals
         public double EstimatedPE { get; set; }
         public double StickerPrice { get; set; }
         public double PriceAfterMOS { get; set; }
+        public double futureStockPrice { get; set; }
 
     }
 }

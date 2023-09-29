@@ -105,10 +105,11 @@ namespace Logic.Repository
             List<StockProfit_Final> stockProfit_Finals = new List<StockProfit_Final>();
             for (int i = 0; i < balanceSheet.Yearly.Count || i < incomeStatement.Yearly.Count; i++)
             {
-                if (i == 10) {
+                if (i == 10)
+                {
                     break;
                 }
-                    StockProfit_Final stockProfit_Final;
+                StockProfit_Final stockProfit_Final;
                 string commonStockSharesOutstandingS = string.Empty;
                 string netIncomeS = string.Empty;
                 string fillingDate = string.Empty;
@@ -151,9 +152,9 @@ namespace Logic.Repository
             {
                 if (lastAssets != 0)
                 {
-                    balanceSheet_Finals[i].GrowthRates = GrowthRatesPrecentage(lastAssets, balanceSheet_Finals[i].Assets);
+                    balanceSheet_Finals[i].GrowthRates = GrowthRatesPrecentage(lastAssets, balanceSheet_Finals[i].Assets - balanceSheet_Finals[i].Debts);
                 }
-                lastAssets = balanceSheet_Finals[i].Assets;
+                lastAssets = balanceSheet_Finals[i].Assets - balanceSheet_Finals[i].Debts;
             }
         }
         private void GetCashFlowGrowthRates(List<CashFlow_Final> cashFlow_Finals)
@@ -200,5 +201,51 @@ namespace Logic.Repository
             return Task.CompletedTask;
         }
 
+        public async Task<RuleNumberOneNumbers> GetRuleNumberOneNumbers(IList<BalanceSheet_Final> balanceSheet, Highlights highlights, StockProfit_Final lastStockProfit_Final)
+        {
+            double currentStockProfit = lastStockProfit_Final.Profit;
+            double EquityGrowthRatesSum = 0;
+            for (int i = 1; i < balanceSheet.Count; i++)
+            {
+                EquityGrowthRatesSum += balanceSheet[i].GrowthRates;
+            }
+            double equityGrowthRatesAvg = EquityGrowthRatesSum / balanceSheet.Count -1;
+            double futurePE = GetFuturePE(EquityGrowthRatesSum, highlights.PeRatio);
+            int numberOfMultiplications = GetNumOfMul(EquityGrowthRatesSum);
+            double futureStockProfit = GetEstimateFutureStockProfit(currentStockProfit, numberOfMultiplications);
+            double futureStockPrice = GetEstimatedFutureStockPrice(futurePE, futureStockProfit);
+            double stickerPrice = GetStickerPrice(futureStockPrice);
+            double stockPriceAfterMOS = GetStockPriceAfterMOS(stickerPrice);
+            RuleNumberOneNumbers ruleNumberOneNumbers = new RuleNumberOneNumbers()
+            {
+                CurrentStockProfit = currentStockProfit,
+                EstimatedAssetsGrowthRates = EquityGrowthRatesSum,
+                EstimatedPE = futurePE,
+                PriceAfterMOS = stockPriceAfterMOS,
+                StickerPrice = stickerPrice,
+                futureStockPrice = futureStockPrice
+            };
+            return ruleNumberOneNumbers;
+        }
+
+        private double GetStockPriceAfterMOS(double stickerPrice) => stickerPrice / 2;
+
+        private double GetStickerPrice(double futureStockPrice) => futureStockPrice / 4;
+
+        private double GetEstimatedFutureStockPrice(double futurePE, double futureStockProfit) => futurePE * futureStockProfit;
+
+        private double GetEstimateFutureStockProfit(double currentStockProfit, int numberOfMultiplications)
+        {
+            double futureStockPrice = currentStockProfit;
+            for (int i = 0; i < numberOfMultiplications; i++)
+            {
+                futureStockPrice = futureStockPrice * 2;
+            }
+            return futureStockPrice;
+        }
+
+        private int GetNumOfMul(double equityGrowthRatesAvg) => (int)Math.Round(72 / equityGrowthRatesAvg);
+
+        private double GetFuturePE(double equityGrowthRatesAvg, double epsEstimateCurrentYear) => Math.Min(equityGrowthRatesAvg * 2, epsEstimateCurrentYear);
     }
 }
